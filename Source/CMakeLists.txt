@@ -18,5 +18,10 @@ target_sources(Ayleid.Logging
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/CompositeLogger.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/LogLevel.hpp"
 )
+install(TARGETS Ayleid.Logging
+    EXPORT
+)
 find_package(fmt CONFIG REQUIRED)
+find_package(ayleid-install-library REQUIRED)
+ayleid_install_library(Ayleid.Logging)
 target_link_libraries(Ayleid.Logging PUBLIC fmt::fmt)

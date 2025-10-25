@@ -118,7 +118,7 @@ function(ayleid_install_library name)
     install(
       EXPORT "${export_name}"
       DESTINATION "${package_install_dir}"
-      NAMESPACE ayleid::
+      NAMESPACE Ayleid::
       FILE "${config_targets_file}"
       COMPONENT "${install_component_name}"
     )

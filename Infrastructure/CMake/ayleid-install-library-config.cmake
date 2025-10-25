@@ -91,7 +91,11 @@ function(ayleid_install_library name)
     set(config_package_file
       "${CMAKE_CURRENT_BINARY_DIR}/${package_name}-config.cmake"
     )
-    set(package_install_dir "${CMAKE_INSTALL_PREFIX}/share")
+
+    # Determine the prefix for project-specific variables
+    string(TOLOWER "${name}" package_install_dir)
+    string(REPLACE "." "-" package_install_dir "${package_install_dir}")
+    set(package_install_dir "${CMAKE_INSTALL_PREFIX}/share/${package_install_dir}")
     configure_package_config_file(
       "${config_file_template}"
       "${config_package_file}"

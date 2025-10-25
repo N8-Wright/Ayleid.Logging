@@ -25,4 +25,6 @@ find_package(fmt CONFIG REQUIRED)
 find_package(ayleid-install-library REQUIRED)
 ayleid_install_library(Ayleid.Logging)
 target_link_libraries(Ayleid.Logging PUBLIC fmt::fmt)
+set_target_properties(Ayleid.Logging PROPERTIES
+    WINDOWS_EXPORT_ALL_SYMBOLS ON)
 target_compile_features(Ayleid.Logging PUBLIC cxx_std_20)

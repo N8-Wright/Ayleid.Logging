@@ -10,13 +10,13 @@ function(ayleid_install_library name)
     message(FATAL_ERROR "ayleid_install_library does not accept extra arguments: ${ARGN}")
   endif()
 
-  # Given foo.bar, the component name is bar
-  string(REPLACE "." ";" name_parts "${name}")
+  # Given foo-bar, the component name is bar
+  string(REPLACE "-" ";" name_parts "${name}")
 
   # Fail if the name doesn't look like foo.bar
   list(LENGTH name_parts name_parts_length)
   if (NOT name_parts_length EQUAL 2)
-    message(FATAL_ERROR "ayleid_install_library expects a name of the form 'Ayleid.<Name>', got '${name}'")
+    message(FATAL_ERROR "ayleid_install_library expects a name of the form 'ayleid-<name>', got '${name}'")
   endif()
 
   set(target_name "${name}")
@@ -41,7 +41,7 @@ function(ayleid_install_library name)
 
   # Determine the prefix for project-specific variables
   string(TOUPPER "${name}" project_prefix)
-  string(REPLACE "." "_" project_prefix "${project_prefix}")
+  string(REPLACE "-" "_" project_prefix "${project_prefix}")
 
   option(
     ${project_prefix}_INSTALL_CONFIG_FILE_PACKAGE
@@ -92,7 +92,6 @@ function(ayleid_install_library name)
       "${CMAKE_CURRENT_BINARY_DIR}/${package_name}-config.cmake"
     )
 
-    # Determine the prefix for project-specific variables
     set(package_install_dir "${name}")
     set(package_install_dir "${CMAKE_INSTALL_PREFIX}/share/${package_install_dir}")
     configure_package_config_file(
@@ -121,7 +120,7 @@ function(ayleid_install_library name)
     install(
       EXPORT "${export_name}"
       DESTINATION "${package_install_dir}"
-      NAMESPACE Ayleid::
+      NAMESPACE ayleid::
       FILE "${config_targets_file}"
       COMPONENT "${install_component_name}"
     )

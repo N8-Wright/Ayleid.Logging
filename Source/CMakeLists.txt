@@ -1,12 +1,12 @@
-add_library(Ayleid.Logging
+add_library(ayleid-logging
     Logger.cpp
     ThreadedLogger.cpp
     ConsoleLogger.cpp
     FileLogger.cpp
     CompositeLogger.cpp
 )
-add_library(Ayleid::Logging ALIAS Ayleid.Logging)
-target_sources(Ayleid.Logging
+add_library(ayleid::logging ALIAS ayleid-logging)
+target_sources(ayleid-logging
   PUBLIC
   FILE_SET HEADERS
   BASE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/../Include"
@@ -18,13 +18,13 @@ target_sources(Ayleid.Logging
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/CompositeLogger.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/LogLevel.hpp"
 )
-install(TARGETS Ayleid.Logging
+install(TARGETS ayleid-logging
     EXPORT
 )
 find_package(fmt CONFIG REQUIRED)
 find_package(ayleid-install-library REQUIRED)
-ayleid_install_library(Ayleid.Logging)
-target_link_libraries(Ayleid.Logging PUBLIC fmt::fmt)
-set_target_properties(Ayleid.Logging PROPERTIES
+ayleid_install_library(ayleid-logging)
+target_link_libraries(ayleid-logging PUBLIC fmt::fmt)
+set_target_properties(ayleid-logging PROPERTIES
     WINDOWS_EXPORT_ALL_SYMBOLS ON)
-target_compile_features(Ayleid.Logging PUBLIC cxx_std_20)
+target_compile_features(ayleid-logging PUBLIC cxx_std_20)

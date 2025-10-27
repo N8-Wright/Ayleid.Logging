@@ -17,6 +17,7 @@ target_sources(ayleid-logging
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/FileLogger.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/CompositeLogger.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/LogLevel.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../Include/Ayleid/Logging/LoggingDelegate.hpp"
 )
 install(TARGETS ayleid-logging
     EXPORT

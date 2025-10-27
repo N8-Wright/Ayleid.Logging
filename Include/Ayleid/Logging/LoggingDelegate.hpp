@@ -47,7 +47,7 @@ namespace Ayleid::Logging
         template<DerivedFromLogger TLogger, typename... TArgs>
         inline void operator()(TLogger& logger, TArgs&&... args) const
         {
-            if (logger.ConfiguredToLog(m_logLevel))
+            if (logger.IsConfiguredToLog(m_logLevel))
             {
                 logger.Log(m_logLevel, m_logGenerator(std::forward<TArgs>(args)...));
             }
